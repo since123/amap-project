@@ -13,6 +13,12 @@
     "element-plus": "^1.0.2-beta.32",
     "element-ui": "^2.15.0",
     "i": "^0.3.6",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^10.0.0",
+    "log4js": "^6.3.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
