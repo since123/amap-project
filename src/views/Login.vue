@@ -38,8 +38,8 @@ export default {
       //   path: "./TodoList",
       // });
       let obj = {
-        name: this.account,
-        password: this.password,
+        name: this.loginForm.account,
+        password: this.loginForm.password,
       };
       this.$http.post("/auth/user", obj).then(
         (res) => {
