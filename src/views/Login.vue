@@ -38,10 +38,10 @@ export default {
       //   path: "./TodoList",
       // });
       let obj = {
-        name: this.account,
-        password: this.password,
+        name: this.loginForm.account,
+        password: this.loginForm.password,
       };
-      this.$http.post("/auth/user", obj).then(
+      this.$http.post("/api/user", obj).then(
         (res) => {
           if (res.data.success) {
             sessionStorage.setItem("demo-token", res.data.token);

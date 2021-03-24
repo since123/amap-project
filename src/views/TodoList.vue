@@ -65,10 +65,12 @@
 </template>
 
 <script>
+import jwt from "jsonwebtoken";
 export default {
   data() {
     return {
-      name: "Molunerfinn",
+      name: "",
+      id: "", // 新增用户id属性，用于区别用户
       todos: "",
       activeName: "first",
       list: [],
@@ -127,6 +129,25 @@ export default {
         message: "任务还原",
       });
     },
+    getUserInfo() {
+      const token = sessionStorage.getItem("demo-token");
+      if (token != null && token != "null") {
+        let decode = jwt.decode(token); // 解析token
+        return decode;
+      } else {
+        return null;
+      }
+    },
+  },
+  created() {
+    const userInfo = this.getUserInfo();
+    if (userInfo != null) {
+      this.id = userInfo.id;
+      this.name = userInfo.name;
+    } else {
+      this.id = "";
+      this.name = "";
+    }
   },
 };
 </script>

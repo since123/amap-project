@@ -5,16 +5,16 @@ const TestDb = db.Test;
 // const User = TestDb.import(userModel);
 const User = require(userModel)(TestDb);
 
-const getUserById = function*(id) {
-  const userInfo = yield User.findOne({
+const getUserById = async function(id) {
+  const userInfo = await User.findOne({
     where: {
       id: id,
     },
   });
   return userInfo;
 };
-const getUserByName = function*(name) {
-  const userInfo = yield User.findOne({
+const getUserByName = async function(name) {
+  const userInfo = await User.findOne({
     where: {
       user_name: name,
     },
