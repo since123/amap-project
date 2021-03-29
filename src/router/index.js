@@ -42,12 +42,6 @@ router.beforeEach((to, from, next) => {
     next();
   } else {
     if (token != "null" && token != null) {
-      // Vue.prototype.$http.defaults.headers.common["Authorization"] =
-      //   "Bearer" + token;
-      // App.config.globalProperties.$http.defaults.headers.common[
-      //   "Authorization"
-      // ] = "Bearer" + token;
-      // app.config.globalProperties.$axios = axios
       next();
     } else {
       next("/");
