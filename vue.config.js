@@ -11,6 +11,10 @@ module.exports = {
         target: "http://localhost:8889",
         changOrigin: true,
       },
+      // "/auth": {
+      //   target: "http://localhost:8889",
+      //   changeOrigin: true,
+      // },
     },
   },
 };
