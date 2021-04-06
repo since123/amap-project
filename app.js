@@ -7,13 +7,23 @@ const router = require("koa-router")({
 });
 const json = require("koa-json");
 const logger = require("koa-logger");
+const path = require("path");
+const serve = require("koa-static");
+const historyApiFallback = require("koa-connect-history-api-fallback"); // 引入依赖
 
 const withAuth = require("./server/routes/auth.js");
 const withApi = require("./server/routes/api.js");
+// 静态文件serve在koa-router的其他规则之上
 
 app.use(require("koa-bodyparser")());
 app.use(json());
 app.use(logger());
+withAuth(router);
+withApi(router, jwt({ secret: "vue-koa-demo" }));
+
+app.use(router.routes()).use(router.allowedMethods());
+app.use(historyApiFallback()); // //
+app.use(serve(path.resolve("dist"))); // 将webpack打包好的项目目录作为Koa静态文件服务的目录
 
 app.use(async function(ctx, next) {
   let start = new Date();
@@ -42,11 +52,6 @@ app.use(async function(ctx, next) {
 app.on("error", function(err, ctx) {
   console.log("server error", err);
 });
-
-withAuth(router);
-withApi(router, jwt({ secret: "vue-koa-demo" }));
-
-app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8889, () => {
   console.log("Koa is listening in 8889");
