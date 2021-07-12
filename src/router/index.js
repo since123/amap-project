@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+// import App from "../App.vue";
 
 const routes = [
   {
@@ -32,4 +33,19 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  const token = sessionStorage.getItem("demo-token");
+  if (to.path == "/") {
+    if (token != "null" && token != null) {
+      next("/todolist");
+    }
+    next();
+  } else {
+    if (token != "null" && token != null) {
+      next();
+    } else {
+      next("/");
+    }
+  }
+});
 export default router;

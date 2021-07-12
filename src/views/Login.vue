@@ -22,6 +22,7 @@
   </div>
 </template>
 <script>
+import api from "../request/api/index";
 export default {
   data() {
     return {
@@ -41,7 +42,8 @@ export default {
         name: this.loginForm.account,
         password: this.loginForm.password,
       };
-      this.$http.post("/auth/user", obj).then(
+      console.log("this", api);
+      api.loginPage.login(obj).then(
         (res) => {
           if (res.data.success) {
             sessionStorage.setItem("demo-token", res.data.token);
